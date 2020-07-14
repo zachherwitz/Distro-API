@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
   name: String,
   phone: String,
   projectId: String,
-  role: String
+  role: String,
+  title: String
 },
 {
   timestamps: true
