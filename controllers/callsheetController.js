@@ -5,25 +5,39 @@ const User = require('../models/users.js')
 
 // CREATE //
 router.post('/', (req, res) => {
+  let mappedAllCalled = []
+  req.body.allCalled.map((called) => {
+    let newUserCallsheetObject = {
+      userId: called.user._id,
+      callTime: called.specCallTime,
+      location: called.specLocation
+    }
+    mappedAllCalled.push(newUserCallsheetObject)
+  })
+
+  req.body.allCalled = mappedAllCalled;
+
   Callsheet.create(req.body, (err, createdCallsheet) => {
+
     // search for all users on the distribution
     createdCallsheet.allCalled.map((user) => {
-      User.findOneAndUpdate({name:user}, {callsheet:{
-        callTime: createdCallsheet.generalCallTime,
-        location: createdCallsheet.generalLocation
+      User.findByIdAndUpdate(user.userId, {callsheet:{
+        callTime: user.callTime,
+        location: user.location
       }}, {new:true}, (err, updatedUser) => {
         console.log(updatedUser);
       })
     })
+
     // search for individual time/location changes and update
-    createdCallsheet.singles.map((singles) => {
-      User.findOneAndUpdate({name:singles.name}, {callsheet:{
-        callTime: singles.callTime,
-        location: singles.location
-      }}, {new:true}, (err, updatedUser) => {
-        console.log(updatedUser);
-      })
-    })
+    // createdCallsheet.singles.map((singles) => {
+    //   User.findOneAndUpdate({name:singles.name}, {callsheet:{
+    //     callTime: singles.callTime,
+    //     location: singles.location
+    //   }}, {new:true}, (err, updatedUser) => {
+    //     console.log(updatedUser);
+    //   })
+    // })
     res.json({createdCallsheet})
   })
 })

@@ -9,21 +9,15 @@ const callsheetSchema = mongoose.Schema({
   generalCallTime: String,
   generalLocation: String,
   nearestHospital: String,
-  allCalled: [String],
-  singles: [{
-    name: String,
+  allCalled: [{
+    userId: String,
     callTime: String,
     location: String
   }],
-  distros: [{
-    distroName: String,
-    callTime: String,
-    location: String
-  }]
 },
 {
   timestamps: true
-})
+});
 
 const Callsheet = mongoose.model('Callsheet', callsheetSchema)
 
