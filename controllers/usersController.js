@@ -39,14 +39,14 @@ router.delete('/:id', (req, res) => {
 // READ SPECIFIC //
 router.get('/user/:email', (req, res) => {
   User.find({email: req.params.email}, (error, foundUser) => {
-    res.json(foundUser)
+    res.json({userObject:foundUser, password:req.query.password})
   })
 })
 
 // READ //
 router.get('/', (req, res) => {
   User.find({}, (err, foundUser) => {
-    res.json({user:foundUser, password:req.query.password});
+    res.json(foundUser);
   })
 })
 
