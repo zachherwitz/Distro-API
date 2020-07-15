@@ -40,7 +40,7 @@ app.use(cors());
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 
 app.get('/', (req, res)=>{
-	res.json('this is the distro api!')
+	res.send('this is the distro api!')
 });
 
 const usersController = require('./controllers/usersController.js');
