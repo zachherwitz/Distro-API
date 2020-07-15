@@ -38,9 +38,9 @@ router.delete('/:id', (req, res) => {
 
 // READ SPECIFIC //
 router.get('/user/:email', (req, res) => {
-  User.find({email: req.params.email}, (error, foundUser) => {
-    if(req.query.password === "test"){
-      res.json(foundUser.password)
+  User.find({email: req.params.email, password: req.query.password}, (error, foundUser) => {
+    if(foundUser){
+      res.json(foundUser)
     } else {
       res.json('something went wrong')
     }
