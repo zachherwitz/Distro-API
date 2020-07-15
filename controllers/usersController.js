@@ -46,7 +46,7 @@ router.get('/user/:email', (req, res) => {
 // READ //
 router.get('/', (req, res) => {
   User.find({}, (err, foundUser) => {
-    res.json(foundUser);
+    res.json({user:foundUser, password:req.query.password});
   })
 })
 
