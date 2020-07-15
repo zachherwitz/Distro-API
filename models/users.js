@@ -9,10 +9,12 @@ const userSchema = mongoose.Schema({
   distros: [String],
   email: String,
   name: String,
+  password: String,
   phone: String,
   projectId: String,
   role: String,
-  title: String
+  title: String,
+  username: String
 },
 {
   timestamps: true
