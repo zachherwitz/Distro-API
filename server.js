@@ -12,12 +12,18 @@ const mongoose = require('mongoose');
 //                              CONFIGURATION                               //
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 
+require('dotenv').config()
 const app = express();
 const PORT = 3000;
+const db = mongoose.connection
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                             ERROR HANDLING                               //
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
+
+db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
+db.on('connected', () => console.log('mongo connected: '));
+db.on('disconnected', () => console.log('mongo disconnected'));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                               MIDDLEWARE                                 //
@@ -47,10 +53,9 @@ app.use('/callsheet', callsheetController);
 //                                DATABASE                                  //
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 
-mongoose.connect('mongodb://localhost:27017/distro-api', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.once('open', () => {
-    console.log('connected to mongod...');
-});
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
+)
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                LISTENER                                  //
