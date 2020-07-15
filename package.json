@@ -1,6 +1,9 @@
 {
   "name": "distro-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.2.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
