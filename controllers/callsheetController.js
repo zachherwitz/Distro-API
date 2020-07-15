@@ -72,42 +72,4 @@ router.get('/', (req, res) => {
   })
 })
 
-// TEST CALLSHEET //
-
-// Callsheet.create({
-//   projectId: "1",
-//   date: "July 12th 2020",
-//   episode: "101",
-//   day: "1",
-//   scriptDraft: "white",
-//   generalCallTime: "10:00AM",
-//   generalLocation: "Union Square",
-//   nearestHospital: "1045 7th Avenue, New York, NY 10009",
-//   singles: [
-//     {
-//       name: "Zach Herwitz",
-//       callTime: "10:45AM",
-//       location: "Near Union Square"
-//     },
-//     {
-//       name: "Griffin Herwitz",
-//       callTime: "11:45AM",
-//       location: "By Union Square"
-//     }
-//   ],
-//   // distros: [
-//   //   {
-//   //     distroName: "Stunt Team",
-//   //     callTime: "8:00AM",
-//   //     location: "Near Union Square"
-//   //   }
-//   // ]
-// })
-
-// let id = "5f0a9dd149abffc59b16b1ab"
-// User.findByIdAndUpdate(id, {name:"NOT ZACH HERWITZ"}, {new:true}, (err, updatedUser) => {
-//
-// })
-
-
 module.exports = router;

@@ -18,6 +18,14 @@ const PORT = 3000;
 const db = mongoose.connection
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
+//                                DATABASE                                  //
+//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
+
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
+)
+
+//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                             ERROR HANDLING                               //
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 
@@ -48,14 +56,6 @@ app.use('/users', usersController);
 
 const callsheetController = require('./controllers/callsheetController.js');
 app.use('/callsheet', callsheetController);
-
-//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
-//                                DATABASE                                  //
-//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
-
-const MONGODB_URI = process.env.MONGODB_URI
-mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
-)
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                LISTENER                                  //
