@@ -37,7 +37,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // READ SPECIFIC //
-router.get('/:email', (req, res) => {
+router.get('/user/:email', (req, res) => {
   User.find({email: req.params.email}, (error, foundUser) => {
     res.json(foundUser)
   })
