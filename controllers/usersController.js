@@ -40,7 +40,7 @@ router.delete('/:id', (req, res) => {
 router.get('/user/:email', (req, res) => {
   User.find({email: req.params.email}, (error, foundUser) => {
     if(req.query.password === "test"){
-      res.json(foundUser)
+      res.json(foundUser.password)
     } else {
       res.json('something went wrong')
     }
