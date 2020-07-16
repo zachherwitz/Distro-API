@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
             });
         } else {
             if(req.body.password = foundUser.password){
-                req.session.user = 'hello';
+                req.session.user = foundUser;
                 res.json(foundUser)
             } else {
                 console.log(error)
