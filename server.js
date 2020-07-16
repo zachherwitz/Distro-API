@@ -18,6 +18,11 @@ require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 3333;
 const db = mongoose.connection
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                DATABASE                                  //
@@ -44,11 +49,7 @@ app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cors());
-app.use(session({
-    secret:process.env.SECRET,
-    resave:false,
-    saveUninitialized:false
-}))
+
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                               CONTROLLERS                                //
