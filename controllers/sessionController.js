@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
             } else {
                 console.log(error)
                 res.json({
-                    error :'Username and password combination does not match.'
+                    error :'Email and password combination does not match.'
                 });
             }
         }
