@@ -7,6 +7,8 @@ const cors = require('cors')
 const express = require('express');
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
+const session = require('express-session');
+
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                              CONFIGURATION                               //
@@ -56,6 +58,9 @@ app.use('/users', usersController);
 
 const callsheetController = require('./controllers/callsheetController.js');
 app.use('/callsheet', callsheetController);
+
+const sessionController = require('./controllers/sessionController.js');
+app.use('/admin/session', sessionController);
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                LISTENER                                  //
