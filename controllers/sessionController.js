@@ -12,8 +12,7 @@ router.post('/', (req, res) => {
                 error :'Email and password combination does not match.'
             });
         } else {
-            const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
-            if(doesPasswordMatch){
+            if(req.body.password = foundUser.password){
                 req.session.user = foundUser;
                 res.json(foundUser)
             } else {
