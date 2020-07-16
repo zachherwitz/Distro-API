@@ -37,7 +37,7 @@ router.delete('/:id', (req, res) => {
   })
 })
 
-// READ SPECIFIC //
+// READ SPECIFIC BY EMAIL //
 router.get('/user/:email', (req, res) => {
   User.find({email: req.params.email}, (error, foundUser) => {
     if(foundUser){
@@ -47,6 +47,29 @@ router.get('/user/:email', (req, res) => {
     }
   })
 })
+
+// READ SPECIFIC BY NAME //
+router.get('/findbyname/:name', (req, res) => {
+  User.find({name: req.params.name}, (error, foundUser) => {
+    if(foundUser){
+      res.json(foundUser)
+    } else {
+      res.json('something went wrong')
+    }
+  })
+})
+
+// READ SPECIFIC BY DEPARTMENT //
+router.get('/findbydepartment/:department', (req, res) => {
+  User.find({department: req.params.department}, (error, foundUser) => {
+    if(foundUser){
+      res.json(foundUser)
+    } else {
+      res.json('something went wrong')
+    }
+  })
+})
+
 
 // READ //
 router.get('/', (req, res) => {
