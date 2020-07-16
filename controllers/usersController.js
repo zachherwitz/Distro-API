@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
 
-app.use(cors());
 
 // CREATE //
 router.post('/', (req, res) => {
