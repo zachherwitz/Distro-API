@@ -10,17 +10,18 @@ router.post('/', (req, res) => {
         if(foundUser === null){
             console.log(error)
             res.json({
-                error :'Email and password combination does not match.'
+              error :'Email and password combination does not match.'
             });
         } else {
             if(req.body.password = foundUser.password){
-                req.session.user = foundUser;
-                res.json(foundUser)
+              console.log(foundUser);
+              req.session.user = foundUser;
+              res.json(foundUser)
             } else {
-                console.log(error)
-                res.json({
-                    error :'Email and password combination does not match.'
-                });
+              console.log(error)
+              res.json({
+                  error :'Email and password combination does not match.'
+              });
             }
         }
     });
