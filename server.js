@@ -7,7 +7,6 @@ const cors = require('cors')
 const express = require('express');
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
-const session = require('express-session');
 
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
@@ -44,11 +43,6 @@ app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cors());
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false
-}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                               CONTROLLERS                                //
@@ -63,9 +57,6 @@ app.use('/users', usersController);
 
 const callsheetController = require('./controllers/callsheetController.js');
 app.use('/callsheet', callsheetController);
-
-const sessionController = require('./controllers/sessionController.js');
-app.use('/admin/session', sessionController);
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                LISTENER                                  //
