@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
-const cors = require('cors')
 
 
-
-router.post('/', cors(), (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body)
     User.findOne({ email:req.body.email }, (error, foundUser) => {
         if(foundUser === null){
