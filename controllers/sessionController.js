@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 router.post('/', (req, res) => {
   User.findOne({email:req.body.email}, (err, foundUser) => {
-    console.log('email found!!!');
+    console.log('found user: ', foundUser);
     if(foundUser === null){
       res.json({
         message: 'Email and password combination does not match'
@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
         const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
          //if it does, set that to session
         if(doesPasswordMatch){
+          console.log('password matches');
           req.session.user = foundUser;
           res.json(foundUser)
         } else {
