@@ -18,6 +18,7 @@ router.post('/', (req, res) => {
           console.log('password matches');
           console.log('logging founduser: ', foundUser);
           req.session.user = foundUser;
+          console.log('logging req.session.user: ', req.session.user);
           res.json(foundUser)
         } else {
           //otherwise, error message
