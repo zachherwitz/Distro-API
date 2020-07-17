@@ -29,8 +29,8 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
+    console.log(req.session.user);
     res.json(req.session.user);
-    console.log('hello!');
 });
 
 router.delete('/', (req, res) => {
