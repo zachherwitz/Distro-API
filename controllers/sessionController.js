@@ -12,10 +12,11 @@ router.post('/', (req, res) => {
       })
     } else {
         const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password)
-        console.log("does  password match:", doesPasswordMatch);
+        console.log("does password match:", doesPasswordMatch);
          //if it does, set that to session
         if(doesPasswordMatch){
           console.log('password matches');
+          console.log('logging founduser: ', foundUser);
           req.session.user = foundUser;
           res.json(foundUser)
         } else {
