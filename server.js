@@ -8,22 +8,31 @@ const express = require('express');
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
-
+require('dotenv').config()
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                              CONFIGURATION                               //
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 
-require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 3333;
 const db = mongoose.connection
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { secure: false }
 }));
+
+//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
+//                               MIDDLEWARE                                 //
+//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
+
+app.use(express.urlencoded({extended:false}));
+app.use(bodyParser.json())
+app.use(express.json());
+app.use(methodOverride('_method'));
+app.use(cors());
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                DATABASE                                  //
@@ -40,17 +49,6 @@ mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: '));
 db.on('disconnected', () => console.log('mongo disconnected'));
-
-//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
-//                               MIDDLEWARE                                 //
-//zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
-
-app.use(express.urlencoded({extended:false}));
-app.use(bodyParser.json())
-app.use(express.json());
-app.use(methodOverride('_method'));
-app.use(cors());
-
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                               CONTROLLERS                                //
