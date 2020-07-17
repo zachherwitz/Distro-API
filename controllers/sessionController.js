@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
         message: 'Email and password combination does not match'
       })
     } else {
-        const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
+        const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password)
         console.log("does  password match:", doesPasswordMatch);
          //if it does, set that to session
         if(doesPasswordMatch){
