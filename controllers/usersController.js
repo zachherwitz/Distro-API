@@ -71,6 +71,16 @@ router.get('/findbydepartment/:department', (req, res) => {
   })
 })
 
+// READ SPECIFIC BY DISTRO //
+router.get('/findbydistro/:distro', (req, res) => {
+  User.find({distro: req.params.distro}, (error, foundUser) => {
+    if(foundUser){
+      res.json(foundUser)
+    } else {
+      res.json('something went wrong')
+    }
+  })
+})
 
 // READ //
 router.get('/', (req, res) => {
