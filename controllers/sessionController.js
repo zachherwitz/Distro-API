@@ -4,7 +4,7 @@ const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
 
 router.post('/', (req, res) => {
-  Users.findOne({email:req.body.email}, (err, foundUser) => {
+  User.findOne({email:req.body.email}, (err, foundUser) => {
     if(foundUser === null){
       res.json({
         message: 'Email and password combination does not match'
