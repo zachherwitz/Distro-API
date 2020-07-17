@@ -32,7 +32,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(cors({origin:'https://distro-app.herokuapp.com', credentials:true}));
+app.use(cors({origin:'http://localhost:3000', credentials:true}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                DATABASE                                  //
