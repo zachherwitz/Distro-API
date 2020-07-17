@@ -32,7 +32,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(cors());
+app.use(cors({credentials:true}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                DATABASE                                  //
