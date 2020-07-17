@@ -3,35 +3,35 @@ const router = express.Router();
 const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
 
-
 router.post('/', (req, res) => {
-    console.log(req.body)
-    User.findOne({ email:req.body.email }, (error, foundUser) => {
-        if(foundUser === null){
-            console.log(error)
-            res.json({
-              error :'Email and password combination does not match.'
-            });
+  Users.findOne({email:req.body.email}, (err, foundUser) => {
+    if(foundUser === null){
+      res.json({
+        message: 'Email and password combination does not match'
+      })
+    } else {
+        const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
+         //if it does, set that to session
+        if(doesPasswordMatch){
+          req.session.user = foundUser;
+          res.json(foundUser)
         } else {
-            if(req.body.password = foundUser.password){
-              req.session.user = foundUser;
-              console.log(req.session.user);
-              res.json(foundUser)
-            } else {
-              console.log(error)
-              res.json({
-                  error :'Email and password combination does not match.'
-              });
-            }
+          //otherwise, error message
+          res.json({
+            message: 'Email and password combination does not match'
+          });
         }
-    });
+    }
+  });
 });
 
 router.get('/', (req, res) => {
     res.json(req.session.user);
+    console.log('hello!');
 });
 
 router.delete('/', (req, res) => {
+    console.log('goodbye!');
     req.session.destroy(() => {
         res.json({
             destroyed:true
