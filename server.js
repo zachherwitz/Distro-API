@@ -32,6 +32,11 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride('_method'));
+
+// IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT //
+//   CHANGE to origin:'https://distro-app.herokuapp.com' WHEN LIVE  //
+// IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT //
+
 app.use(cors({origin:'http://localhost:3000', credentials:true}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
