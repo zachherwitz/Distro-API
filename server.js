@@ -37,7 +37,7 @@ app.use(methodOverride('_method'));
 //   CHANGE to origin:'https://distro-app.herokuapp.com' WHEN LIVE  //
 // IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT // IMPORTANT //
 
-app.use(cors({origin:'https://distro-app.herokuapp.com/', credentials:true}));
+app.use(cors({origin:'https://distro-app.herokuapp.com', credentials:true}));
 
 //zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach~//~zach
 //                                DATABASE                                  //
