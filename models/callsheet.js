@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const callsheetSchema = mongoose.Schema({
+  projectTitle: String,
   projectId: String,
   date: String,
   episode: String,
