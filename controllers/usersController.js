@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   User.create(req.body, (err, createdUser) => {
     User.find({}, (err, foundUser) => {
+      foundUser.password = null;
       res.json({all:foundUser, created:createdUser})
     })
   })
@@ -22,6 +23,7 @@ router.put('/:id', (req, res) => {
     {new:true},
     (err, updatedUser) => {
       User.find({}, (err, foundUser) => {
+        foundUser.password = null;
         res.json({all:foundUser, updated:updatedUser})
       })
     }
@@ -33,6 +35,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
     User.find({}, (err, foundUser) => {
+      foundUser.password = null;
       res.json({all:foundUser, deleted:deletedUser})
     })
   })
@@ -42,6 +45,7 @@ router.delete('/:id', (req, res) => {
 router.get('/user/:email', (req, res) => {
   User.find({email: req.params.email}, (error, foundUser) => {
     if(foundUser){
+      foundUser.password = null;
       res.json(foundUser)
     } else {
       res.json('something went wrong')
@@ -53,6 +57,7 @@ router.get('/user/:email', (req, res) => {
 router.get('/findbyname/:name', (req, res) => {
   User.find({name: req.params.name}, (error, foundUser) => {
     if(foundUser){
+      foundUser.password = null;
       res.json(foundUser)
     } else {
       res.json('something went wrong')
@@ -64,6 +69,7 @@ router.get('/findbyname/:name', (req, res) => {
 router.get('/findbydepartment/:department', (req, res) => {
   User.find({department: req.params.department}, (error, foundUser) => {
     if(foundUser){
+      foundUser.password = null;
       res.json(foundUser)
     } else {
       res.json('something went wrong')
@@ -75,6 +81,7 @@ router.get('/findbydepartment/:department', (req, res) => {
 router.get('/findbydistro/:distro', (req, res) => {
   User.find({distros: req.params.distro}, (error, foundUser) => {
     if(foundUser){
+      foundUser.password = null;
       res.json(foundUser)
     } else {
       res.json('something went wrong')
@@ -85,6 +92,7 @@ router.get('/findbydistro/:distro', (req, res) => {
 // READ //
 router.get('/', (req, res) => {
   User.find({}, (err, foundUser) => {
+    foundUser.password = null;
     res.json(foundUser);
   })
 })

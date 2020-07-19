@@ -15,6 +15,7 @@ router.post('/', (req, res) => {
         console.log("does password match:", doesPasswordMatch);
          //if it does, set that to session
         if(doesPasswordMatch){
+          foundUser.password = null;
           console.log('password matches');
           console.log('logging founduser: ', foundUser);
           req.session.user = foundUser;
