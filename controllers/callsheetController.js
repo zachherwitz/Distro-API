@@ -28,16 +28,6 @@ router.post('/', (req, res) => {
         console.log(updatedUser);
       })
     })
-
-    // search for individual time/location changes and update
-    // createdCallsheet.singles.map((singles) => {
-    //   User.findOneAndUpdate({name:singles.name}, {callsheet:{
-    //     callTime: singles.callTime,
-    //     location: singles.location
-    //   }}, {new:true}, (err, updatedUser) => {
-    //     console.log(updatedUser);
-    //   })
-    // })
     res.json({createdCallsheet})
   })
 })

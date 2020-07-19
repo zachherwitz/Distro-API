@@ -14,6 +14,15 @@ const callsheetSchema = mongoose.Schema({
     callTime: String,
     location: String
   }],
+  weather: [{
+    max: Number,
+    min: Number,
+    rainChance: Number,
+    weatherText: String,
+    sunrise: String,
+    sunset: String
+  }],
+  zip: Number
 },
 {
   timestamps: true
