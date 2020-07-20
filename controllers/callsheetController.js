@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
     let newUserCallsheetObject = {
       userId: called.user._id,
       callTime: called.specCallTime,
-      location: called.specLocation
+      location: called.specLocation,
     }
     mappedAllCalled.push(newUserCallsheetObject)
   })
@@ -23,7 +23,8 @@ router.post('/', (req, res) => {
     createdCallsheet.allCalled.map((user) => {
       User.findByIdAndUpdate(user.userId, {callsheet:{
         callTime: user.callTime,
-        location: user.location
+        location: user.location,
+        date: user.date
       }}, {new:true}, (err, updatedUser) => {
         console.log(updatedUser);
       })
