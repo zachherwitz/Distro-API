@@ -17,8 +17,8 @@ router.post('/', (req, res) => {
   })
 
   req.body.allCalled = mappedAllCalled;
-  console.log('req.body.allCalled');
-  console.log(req.body.allCalled);
+  console.log('req.body');
+  console.log(req.body);
   Callsheet.create(req.body, (err, createdCallsheet) => {
 
     // search for all users on the distribution
@@ -28,8 +28,9 @@ router.post('/', (req, res) => {
       User.findByIdAndUpdate(user.userId, {callsheet:{
         callTime: user.callTime,
         location: user.location,
-        date: user.date
+        date: createdCallsheet.date
       }}, {new:true}, (err, updatedUser) => {
+        console.log('updatedUser');
         console.log(updatedUser);
       })
     })
