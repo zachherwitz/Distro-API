@@ -6,7 +6,7 @@ const User = require('../models/users.js')
 // CREATE //
 router.post('/', (req, res) => {
   let mappedAllCalled = []
-  req.body.allCalled.map((called) => {
+  req.body.callsheet.allCalled.map((called) => {
     let newUserCallsheetObject = {
       userId: called.user._id,
       callTime: called.specCallTime,
@@ -15,17 +15,24 @@ router.post('/', (req, res) => {
     mappedAllCalled.push(newUserCallsheetObject)
   })
 
-  req.body.allCalled = mappedAllCalled;
+  req.body.callsheet.allCalled = mappedAllCalled;
 
-  Callsheet.create(req.body, (err, createdCallsheet) => {
-
+  Callsheet.create(req.body.callsheet, (err, createdCallsheet) => {
+    req.body.allusers.map((user) => {
+      User.findByIdAndUpdate(user.userId, {callsheet:{
+        callTime: 'Not Called',
+        location: 'Not Called'
+      }}, {new:true}, (err, updatedUser) => {
+        // console.log(updatedUser);
+      })
+    })
     // search for all users on the distribution
     createdCallsheet.allCalled.map((user) => {
       User.findByIdAndUpdate(user.userId, {callsheet:{
         callTime: user.callTime,
         location: user.location
       }}, {new:true}, (err, updatedUser) => {
-        console.log(updatedUser);
+        // console.log(updatedUser);
       })
     })
     res.json({createdCallsheet})
