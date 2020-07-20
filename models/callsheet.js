@@ -13,7 +13,8 @@ const callsheetSchema = mongoose.Schema({
   allCalled: [{
     userId: String,
     callTime: String,
-    location: String
+    location: String,
+    date: String
   }],
   weather: [{
     max: Number,
