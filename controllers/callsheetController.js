@@ -11,16 +11,20 @@ router.post('/', (req, res) => {
       userId: called.user._id,
       callTime: called.specCallTime,
       location: called.specLocation,
+      date: called.date
     }
     mappedAllCalled.push(newUserCallsheetObject)
   })
 
   req.body.allCalled = mappedAllCalled;
-
+  console.log('req.body.allCalled');
+  console.log(req.body.allCalled);
   Callsheet.create(req.body, (err, createdCallsheet) => {
 
     // search for all users on the distribution
     createdCallsheet.allCalled.map((user) => {
+      console.log('user');
+      console.log(user);
       User.findByIdAndUpdate(user.userId, {callsheet:{
         callTime: user.callTime,
         location: user.location,
