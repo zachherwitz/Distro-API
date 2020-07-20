@@ -6,8 +6,13 @@ const User = require('../models/users.js')
 // CREATE //
 router.post('/', (req, res) => {
   let mappedAllCalled = []
+  console.log('REQ DOT BODY');
+  console.log('REQ DOT BODY');
   console.log(req.body);
-  req.body.allCalled.map((called) => {
+  console.log('REQ DOT BODY DOT CALLSHEET DOT ALLCALLED');
+  console.log('REQ DOT BODY DOT CALLSHEET DOT ALLCALLED');
+  console.log(req.body.callsheet.allCalled);
+  req.body.callsheet.allCalled.map((called) => {
     let newUserCallsheetObject = {
       userId: called.user._id,
       callTime: called.specCallTime,
