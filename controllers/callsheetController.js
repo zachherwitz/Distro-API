@@ -6,12 +6,6 @@ const User = require('../models/users.js')
 // CREATE //
 router.post('/', (req, res) => {
   let mappedAllCalled = []
-  console.log('REQ DOT BODY');
-  console.log('REQ DOT BODY');
-  console.log(req.body);
-  console.log('REQ DOT BODY DOT CALLSHEET DOT ALLCALLED');
-  console.log('REQ DOT BODY DOT CALLSHEET DOT ALLCALLED');
-  console.log(req.body.callsheet.allCalled);
   req.body.callsheet.allCalled.map((called) => {
     let newUserCallsheetObject = {
       userId: called.user._id,
@@ -21,9 +15,13 @@ router.post('/', (req, res) => {
     mappedAllCalled.push(newUserCallsheetObject)
   })
 
-  req.body.allCalled = mappedAllCalled;
+  req.body.callsheet.allCalled = mappedAllCalled;
+  console.log('req.body.callsheet');
+  console.log(req.body.callsheet);
+  console.log('req.body.allUsers');
+  console.log(req.body.allUsers);
 
-  Callsheet.create(req.body, (err, createdCallsheet) => {
+  Callsheet.create(req.body.callsheet, (err, createdCallsheet) => {
 
     // search for all users on the distribution
     createdCallsheet.allCalled.map((user) => {
